@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+arduino-cli upload $1 -p $2 --fqbn esp32:esp32:esp32doit-devkit-v1 -v
