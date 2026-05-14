@@ -37,10 +37,17 @@ const char* password = PASSWORD;
 25 ARDUINO_EVENT_MAX
 */
 
+bool connected = false;
+
 void handleEvent(WiFiEvent_t event){
   Serial.printf("[WiFi-event] event: %d\n", event);
   if (event == ARDUINO_EVENT_WIFI_STA_GOT_IP){
-    Serial.printf("Connected! IP address: %s\n, through the event %d\n", WiFi.localIP().toString());
+    Serial.printf("Connected! IP address: %s\n", WiFi.localIP().toString());
+    connected = true;
+  }
+  else if (event == ARDUINO_EVENT_WIFI_STA_DISCONNECTED){
+    Serial.println("Disconnected!");
+    connected = false;
   }
 }
 
@@ -52,4 +59,11 @@ void setup(){
 }
 
 void loop(){
+  if (connected){
+    Serial.println("now connected!");
+  }
+  else{
+    Serial.println("not connected yet...");
+  }
+  delay(1000);
 }
