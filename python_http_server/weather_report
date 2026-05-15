@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-curl -X POST -H "Content-Type: application/json" -d '{"temperature": "31.7", "humidity": "67"}' localhost:8080
+key=$(cat ./key)
+data="{\"key\":\"$key\", \"temperature\": \"31.7\", \"humidity\": \"67\"}"
+curl -X POST -H "Content-Type: application/json" -d "$data" localhost:8080

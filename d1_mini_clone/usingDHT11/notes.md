@@ -2,7 +2,7 @@
 
 ## initialization
 
-- When MCU starts, no reading data, set the output pin to HIGH
+- When MCU starts, no reading data, set pin to INPUT
 
 ## start signal
 
