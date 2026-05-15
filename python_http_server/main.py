@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from datetime import datetime
+import csv
+import json
+
+WEATHER_DATA = "./weather_data.csv"
 
 app = FastAPI()
 
@@ -14,10 +18,8 @@ class Weather(BaseModel):
 
 @app.post('/')
 async def handle_post_request(weather: Weather):
-    print(f"your key: {weather.key.strip()}")
-    print(f"expected key: {KEY.strip()}")
     if weather.key.strip() == KEY.strip():
-        with open("./weather_data.csv", 'a') as file:
+        with open(WEATHER_DATA, 'a') as file:
             date = datetime.now().isoformat()
             humidity = round(weather.humidity, 2)
             temperature = round(weather.temperature, 2)
@@ -35,7 +37,6 @@ async def handle_post_request(weather: Weather):
 
 @app.get('/')
 async def handle_get_request():
-    return {
-        "message": "what's going on!"
-    }
-
+    with open(WEATHER_DATA, newline="") as file:
+        data = list(csv.DictReader(file))
+    return data
