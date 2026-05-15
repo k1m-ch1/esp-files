@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from datetime import datetime
 
 app = FastAPI()
 
@@ -16,8 +17,16 @@ async def handle_post_request(weather: Weather):
     print(f"your key: {weather.key.strip()}")
     print(f"expected key: {KEY.strip()}")
     if weather.key.strip() == KEY.strip():
+        with open("./weather_data.csv", 'a') as file:
+            date = datetime.now().isoformat()
+            humidity = round(weather.humidity, 2)
+            temperature = round(weather.temperature, 2)
+            file.write(f"{date},{humidity},{temperature}\n")
         return {
-            "message": "weather stored successfully"
+            "message": "weather stored successfully",
+            "date": date,
+            "humidity":humidity,
+            "temperature":temperature
         }
     else:
         return {
