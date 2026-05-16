@@ -9,7 +9,7 @@
 
 #define WIFI_TIMEOUT_MS 10000
 #define HTTP_TIMEOUT_MS 5000
-#define SLEEP_DURATION 5e6
+#define SLEEP_DURATION 30*60e6
 
 void setup(){
   Serial.begin(115200);
@@ -28,9 +28,9 @@ void setup(){
   }
   Serial.println();
   Serial.printf("[WiFi] got ip: %s\n", WiFi.localIP().toString().c_str());
-  float temperature;
   float humidity;
-  if(!readHumidityAndTemperature(DHT_PIN, &temperature, &humidity)){
+  float temperature;
+  if(!readHumidityAndTemperature(DHT_PIN, &humidity, &temperature)){
     HTTPClient http;
     WiFiClient client;
     http.setTimeout(HTTP_TIMEOUT_MS);
