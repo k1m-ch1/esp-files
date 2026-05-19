@@ -1,8 +1,14 @@
 
 // this is the Data Direction Register for our pin
-#define LED_DDR DDRD
-#define LED_PORT PORTD
-#define LED_PIN PD6
+//#define LED_DDR DDRD
+//#define LED_PORT PORTD
+//#define LED_PIN PD6
+
+#define LED_DDR DDRB
+#define LED_PORT PORTB
+#define LED_PIN PB1
+#define DELAY_TIME 1000
+
 // LED_PIN is defined with respect to the port (for pin 9, it's PORT B, PB1)
 
 /*
@@ -39,8 +45,8 @@
 void sendResetCode(){
   LED_PORT &= ~(1 << LED_PIN);
   // this is already at least 2 cycles, so already 125ns has passed
-  int start = millis();
-  while(millis() - start < 60){
+  unsigned long start = micros();
+  while(micros() - start < 60){
   }
 }
 
@@ -83,34 +89,357 @@ void setup(){
 
 void loop(){
   noInterrupts();
-  /*
-  uint_32 color = 0xFF0000;
-  uint_8 redByte = (color >> 4) & 0b11;
-  uint_8 blueByte = (color >> 2) & 0b11;
-  uint_8 greenByte = (color >> 0) & 0b11;
-  */
-  // send it in the order of GRB
 
- LED_PORT |= (1 << LED_PIN);
+  // sending byte 0x00000000
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
   __asm__("nop\nnop\nnop\nnop\n");
   LED_PORT &= ~(1 << LED_PIN);
-  __asm__("nop\nnop\nnop\nnop\nnop\n");
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending byte 0xff000000
+  // sending 1
 
   LED_PORT |= (1 << LED_PIN);
   __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
   LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
 
   LED_PORT |= (1 << LED_PIN);
   __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
   LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
 
- LED_PORT |= (1 << LED_PIN);
-  __asm__("nop\nnop\nnop\nnop\n");
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
   LED_PORT &= ~(1 << LED_PIN);
   __asm__("nop\nnop\nnop\nnop\nnop\n");
 
- // since a function call adds so much overhead, this is like pretty much imposssible to do without assembly, or without writing really shit code
- 
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending byte 0xff000000
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+  // sending 1
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\n");
+
+
+  sendResetCode();
   interrupts();
-  delay(500);
+  delay(DELAY_TIME);
+
+  // sending byte 0x00000000
+  // sending 0
+
+  noInterrupts();
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending byte 0x00000000
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending byte 0x00000000
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  // sending 0
+
+  LED_PORT |= (1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\n");
+  LED_PORT &= ~(1 << LED_PIN);
+  __asm__("nop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\nnop\n");
+
+  sendResetCode();
+  interrupts();
+  delay(DELAY_TIME);
+
 }
