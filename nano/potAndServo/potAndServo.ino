@@ -3,7 +3,7 @@
 
 #define INPUT_PIN A0
 #define SERVO_PIN 9
-#define DELAY_TIME 20
+#define DELAY_TIME 60
 
 Servo servo;
 
